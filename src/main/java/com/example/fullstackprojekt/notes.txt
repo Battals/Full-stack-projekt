@@ -1,0 +1,10 @@
+controllers
+-controlleren med brugelige url links osv.
+models
+-vores klasser med objekter som bruges i forhold til programmet
+
+repositories
+-datahåndtering, download upload og redigering
+
+services
+-regnskaber, databekræftelses i forhold til validitet osv.
