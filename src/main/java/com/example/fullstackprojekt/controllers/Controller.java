@@ -14,7 +14,7 @@ public class Controller {
         return "indexRasha";
     }
 
-    @GetMapping("/battal")
+    @GetMapping("https://wishlistdk.azurewebsites.net/battal")
     public String battal(){
         return "indexBattal";
     }
