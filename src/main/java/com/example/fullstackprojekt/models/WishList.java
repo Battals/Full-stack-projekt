@@ -3,8 +3,8 @@ package com.example.fullstackprojekt.models;
 import java.util.ArrayList;
 
 public class WishList {
-    private final String author;
     private ArrayList<Wish> wishlist;
+    private final String author;
 
     public WishList(ArrayList<Wish> wishlist, String author) {
         this.author = author;
