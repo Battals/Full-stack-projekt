@@ -32,7 +32,7 @@ public class SQLManager {
         establishConnection();
     }
 
-    public void login(String name, String password){
+    public void login(String name, String password){ //User can log in, and program registers credentials
         try{
             rs = stmt.executeQuery("SELECT * FROM users ORDER BY name");
             while(rs.next()){
@@ -48,13 +48,13 @@ public class SQLManager {
         }
     }
 
-    public void logout(){
+    public void logout(){ //logout function
         user = null;
         wishlist = null;
     }
 
     //User menu
-    public ArrayList<Wish> getWishlist(){
+    public ArrayList<Wish> getWishlist(){ //Creates an ArrayList containing Wish objects
         ArrayList<Wish> wishes = new ArrayList<>();
         try {
             sqlString = "SELECT * FROM " + wishlist + " ORDER BY date";
@@ -68,7 +68,7 @@ public class SQLManager {
         return wishes;
     }
 
-    public void addWish(String name, String link){
+    public void addWish(String name, String link){ //Adds a wish to current users wishlist
         try {
             sqlString = "INSERT INTO " + wishlist + "(name, link, date)" +
                     " VALUES(" + name + ", " + link + ", " + LocalDate.now() + ")";
@@ -78,7 +78,7 @@ public class SQLManager {
         }
     }
 
-    public void deleteWish(Wish wish){
+    public void deleteWish(Wish wish){ //Deletes a wish from current users wishlist
         try {
             sqlString = "DELETE FROM " + wishlist + " WHERE name = " + wish.getName() + ")";
             stmt.executeUpdate(sqlString);
@@ -88,7 +88,7 @@ public class SQLManager {
     }
 
     //Admin Menu
-    private void deleteUser(String username){
+    private void deleteUser(String username){ //Deletes user and their wishlist
         try {
             stmt.executeUpdate("DROP TABLE wishlist_" + username);
             stmt.executeUpdate("DELETE FROM users WHERE name = " + username);
@@ -99,11 +99,12 @@ public class SQLManager {
     }
 
     //System Management
-    private void establishConnection(){
+    private void establishConnection(){ //Creates a connection to the sql database
         //Database Credentials
         String url ="jdbc:mysql://wishlist1.mysql.database.azure.com:3306/wishlist1?useSSL=true&requireSSL=false";
         String rootName = "admin1@wishlist1";
         String password = "Testtest1";
+        //Process
         try {
             //Define URL of the database
             System.out.println("url defined");
