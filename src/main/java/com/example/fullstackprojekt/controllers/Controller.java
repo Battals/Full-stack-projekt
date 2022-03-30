@@ -20,7 +20,7 @@ public class Controller {
         return "indexRasha";
     }
 
-    @GetMapping("/battal")
+    @GetMapping("/login")
     public String battal(){
         return "indexBattal";
     }
