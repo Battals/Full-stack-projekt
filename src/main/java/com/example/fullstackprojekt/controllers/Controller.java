@@ -22,10 +22,9 @@ public class Controller {
         return "indexRasha";
     }
 
-    @GetMapping("/login")
+    @GetMapping("/test")
     public String battal(){
         test = "battal";
         return "indexBattal";
     }
-
 }
