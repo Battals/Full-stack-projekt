@@ -131,7 +131,7 @@ public class SQLManager {
     private void establishConnection(){ //Creates a connection to the sql database
         String url ="jdbc:mysql://wishlist1.mysql.database.azure.com:3306/wishlist1?useSSL=true&requireSSL=false";
         String rootName = "admin1@wishlist1";
-        String password = "Testtest1";
+        String password = "Hej12345";
         //Process
         try {
             //Define URL of the database
