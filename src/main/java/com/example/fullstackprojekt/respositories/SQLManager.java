@@ -88,14 +88,43 @@ public class SQLManager {
     }
 
     //Admin Menu
+    private void runOnFirstStartUp(){
+
+    }
+    private void createUser(String username, String password){ //Creates a new user
+        try{
+            try {
+                stmt.executeUpdate("DROP TABLE wishlist_" + username);
+            } catch (SQLException e) {
+                //no prior wishlists for username
+            }
+            stmt.executeUpdate("INSERT INTO users VALUES('" + username + "', '" + password + "')");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     private void deleteUser(String username){ //Deletes user and their wishlist
         try {
             stmt.executeUpdate("DROP TABLE wishlist_" + username);
-            stmt.executeUpdate("DELETE FROM users WHERE name = " + username);
+            stmt.executeUpdate("DELETE FROM users WHERE name = '" + username + "'");
             System.out.println("deleted the user (" + username + ")");
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    private boolean userExists(String username){ //returns a boolean whether username is used or not
+        boolean userExists = false;
+        try {
+            stmt.executeQuery("SELECT * FROM users");
+            while(rs.next()){
+                if(rs.getString("name").equalsIgnoreCase(username)){
+                    userExists = true;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return userExists;
     }
 
     //System Management
