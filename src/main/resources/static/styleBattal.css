@@ -46,6 +46,7 @@
     width: 1px;
 }
 
+
 /* helpers/icon.css */
 
 :root {
@@ -105,9 +106,10 @@ body {
 }
 
 a {
-    color: var(--anchorColor);
+    color: black;
     outline: 0;
     text-decoration: none;
+    position: fixed; bottom: 33.5%;
 }
 
 a:focus,
