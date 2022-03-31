@@ -15,7 +15,7 @@ public class Controller {
     @GetMapping("/")
     public String index(){
         System.out.println(test);
-        return "indexBattal";
+        return "index";
     }
 
     @GetMapping("/rasha")
