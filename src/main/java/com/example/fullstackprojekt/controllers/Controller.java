@@ -27,9 +27,9 @@ public class Controller {
     @GetMapping("/login")
     public String battal(HttpSession session){
         if(session.getAttribute("username")==null){
-            return "redirect:/";
-        } else {
             return "indexBattal";
+        } else {
+            return "redirect:/";
         }
     }
 
