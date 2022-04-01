@@ -49,6 +49,7 @@ public class Controller {
         SQLManager sql = new SQLManager();
         sql.start();
         try {
+            //Opret bruger, parametre til oprettelse af ny bruger til databasen
             System.out.println(dataFromForm.getParameter("username"));
             System.out.println(dataFromForm.getParameter("email"));
             System.out.println(dataFromForm.getParameter("password"));
