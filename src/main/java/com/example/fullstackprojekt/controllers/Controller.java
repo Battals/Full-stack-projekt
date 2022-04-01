@@ -7,61 +7,76 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
 
+import javax.servlet.http.HttpSession;
+
 
 @org.springframework.stereotype.Controller
 
 public class Controller {
-    private String test;
+    /*
+     Session Attributes:
+     boolean - 'logged-in'(true/false)
+     String - username(username)
+     */
 
     @GetMapping("/")
-    public String index(){
-        System.out.println(test);
-        return "indexBattal";
-    }
-
-    @GetMapping("/rasha")
-    public String rasha(){
-        test = "rasha";
-        return "indexRasha";
+    public String index(HttpSession session){
+        return "index";
     }
 
     @GetMapping("/login")
-    public String battal(){
-        test = "battal";
-        return "indexBattal";
+    public String battal(HttpSession session){
+        if(session.getAttribute("username")==null){
+            return "indexBattal";
+        } else {
+            return "redirect:/";
+        }
     }
 
     @GetMapping("/create") //able to create a user
-    public String createUser(){
-        return "createUser";
+    public String createUser(HttpSession session){
+        if(session.getAttribute("username")==null) {
+            return "createUser";
+        } else {
+            return "redirect:/";
+        }
     }
 
     @GetMapping("/add-wish")//able to input a name and link, which will be added to wishlist as a wish
-    public String addWish(){
-        return "addWish";
+    public String addWish(HttpSession session){
+        if(session.getAttribute("username")==null){
+            return "redirect:/";
+        } else {
+            return "addWish";
+        }
     }
 
     @GetMapping("/edit-wishlist") //Can remove wish, and redirect oneself to /add-wish
-    public String editWishlist(){
-        return "editWishlist";
+    public String editWishlist(HttpSession session){
+        if(session.getAttribute("username")==null){
+            return "redirect:/";
+        } else {
+            return "editWishlist";
+        }
     }
 
     @GetMapping("/about") //lav en html med about?
     public String about(){
-        return "redirect:/";
+        return "redirect:/"; //
     }
 
 
     //post mapping for user, dataFromForm is input put into string form
     @PostMapping("/logging") //log into an existing user
-    public String logging(WebRequest dataFromForm){
+    public String logging(WebRequest dataFromForm, HttpSession session){
         SQLManager sql = new SQLManager();
         sql.start();
         try{
-            //"dataFromForm.getParameter("username")" = String
-            sql.login(dataFromForm.getParameter("username"), dataFromForm.getParameter("password"));
-            System.out.println(dataFromForm.getParameter("username"));
-            System.out.println(dataFromForm.getParameter("password"));
+            if(sql.login(dataFromForm.getParameter("username"), dataFromForm.getParameter("password"))){
+                session.setAttribute("username", dataFromForm.getParameter("username"));
+            } else {
+                return "redirect:/login";
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -69,20 +84,17 @@ public class Controller {
     }
 
     @PostMapping("/creating") //Create a new user
-    public String creating(WebRequest dataFromForm){
+    public String creating(WebRequest dataFromForm, HttpSession session){
         SQLManager sql = new SQLManager();
         sql.start();
         try {
-            //Opret bruger, parametre til oprettelse af ny bruger til databasen
-            sql.createUser(dataFromForm.getParameter("username"), dataFromForm.getParameter("password"));
-            System.out.println(dataFromForm.getParameter("username"));
-            //Evt. kan email være inkluderet i databasen
-            System.out.println(dataFromForm.getParameter("email"));
-            System.out.println(dataFromForm.getParameter("password"));
+            if(sql.createUser(dataFromForm.getParameter("username"), dataFromForm.getParameter("password"))){
+                session.setAttribute("username", dataFromForm.getParameter("username"));
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "redirect:/";
+        return "redirect:/create";
     }
 
     @PostMapping("/adding") //Add wish to the wishlist

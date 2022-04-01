@@ -32,7 +32,7 @@ public class SQLManager {
         establishConnection();
     }
 
-    public void login(String name, String password){ //User can log in, and program registers credentials
+    public boolean login(String name, String password){ //User can log in, and program registers credentials
         try{
             rs = stmt.executeQuery("SELECT * FROM users ORDER BY name");
             while(rs.next()){
@@ -40,12 +40,14 @@ public class SQLManager {
                     user = rs.getString("name");
                     wishlist = "wishlist_" + rs.getString("name");
                     System.out.println("user logged in: " + rs.getString("name"));
+                    return true;
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("error");
         }
+        return false;
     }
 
     public void logout(){ //logout function
@@ -90,7 +92,7 @@ public class SQLManager {
     //Admin Menu
     private void runOnFirstStartUp(){
     }
-    public void createUser(String username, String password){ //Creates a new user
+    public boolean createUser(String username, String password){ //Creates a new user
         try{
             try {
                 stmt.executeUpdate("DROP TABLE wishlist_" + username);
@@ -98,9 +100,11 @@ public class SQLManager {
                 //no prior wishlists for username
             }
             stmt.executeUpdate("INSERT INTO users VALUES('" + username + "', '" + password + "')");
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return false;
     }
     public void deleteUser(String username){ //Deletes user and their wishlist
         try {
