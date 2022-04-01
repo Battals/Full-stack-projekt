@@ -62,7 +62,7 @@ public class Controller {
 
     @GetMapping("/about") //lav en html med about?
     public String about(){
-        return "redirect:/"; //
+        return "about"; //
     }
 
 
