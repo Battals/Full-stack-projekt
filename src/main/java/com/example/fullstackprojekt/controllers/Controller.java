@@ -51,8 +51,6 @@ public class Controller {
     }
 
 
-
-
     //post mapping for user, dataFromForm er string form af dataen der er inputtet
     @PostMapping("/logging") //log into an existing user
     public String logging(WebRequest dataFromForm){
