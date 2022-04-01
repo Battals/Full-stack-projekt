@@ -21,11 +21,7 @@ public class Controller {
 
     @GetMapping("/")
     public String index(HttpSession session){
-        if((boolean) session.getAttribute("logged-in")){
-            return "index-logged-in";
-        } else {
-            return "index";
-        }
+        return "index";
     }
 
     @GetMapping("/login")
