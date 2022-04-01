@@ -12,6 +12,7 @@ import org.springframework.web.context.request.WebRequest;
 
 public class Controller {
     private String test;
+
     @GetMapping("/")
     public String index(){
         System.out.println(test);
