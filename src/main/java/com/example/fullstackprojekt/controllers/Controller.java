@@ -44,7 +44,7 @@ public class Controller {
         return "redirect:/";
     }
 
-    @PostMapping("creating")
+    @PostMapping("/creating")
     public String creating(WebRequest dataFromForm){
         SQLManager sql = new SQLManager();
         sql.start();
