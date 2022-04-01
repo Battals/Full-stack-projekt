@@ -89,9 +89,8 @@ public class SQLManager {
 
     //Admin Menu
     private void runOnFirstStartUp(){
-
     }
-    private void createUser(String username, String password){ //Creates a new user
+    public void createUser(String username, String password){ //Creates a new user
         try{
             try {
                 stmt.executeUpdate("DROP TABLE wishlist_" + username);
@@ -103,7 +102,7 @@ public class SQLManager {
             e.printStackTrace();
         }
     }
-    private void deleteUser(String username){ //Deletes user and their wishlist
+    public void deleteUser(String username){ //Deletes user and their wishlist
         try {
             stmt.executeUpdate("DROP TABLE wishlist_" + username);
             stmt.executeUpdate("DELETE FROM users WHERE name = '" + username + "'");
@@ -112,7 +111,7 @@ public class SQLManager {
             e.printStackTrace();
         }
     }
-    private boolean userExists(String username){ //returns a boolean whether username is used or not
+    public boolean userExists(String username){ //returns a boolean whether username is used or not
         boolean userExists = false;
         try {
             stmt.executeQuery("SELECT * FROM users");
