@@ -43,4 +43,18 @@ public class Controller {
         }
         return "redirect:/";
     }
+
+    @PostMapping("creating")
+    public String creating(WebRequest dataFromForm){
+        SQLManager sql = new SQLManager();
+        sql.start();
+        try {
+            System.out.println(dataFromForm.getParameter("username"));
+            System.out.println(dataFromForm.getParameter("email"));
+            System.out.println(dataFromForm.getParameter("password"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "redirect:/";
+    }
 }
