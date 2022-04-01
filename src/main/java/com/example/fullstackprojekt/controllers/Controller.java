@@ -51,7 +51,7 @@ public class Controller {
     }
 
 
-    //post mapping for user, dataFromForm er string form af dataen der er inputtet
+    //post mapping for user, dataFromForm is input put into string form
     @PostMapping("/logging") //log into an existing user
     public String logging(WebRequest dataFromForm){
         SQLManager sql = new SQLManager();
