@@ -3,6 +3,8 @@
     src: url(../fonts/Sketch_3D.ttf);
 }
 
+
+
 :root {
     --baseColor: grey;
 }
@@ -109,6 +111,22 @@ body {
     min-block-size: 100vh;
 }
 
+.box{
+    background: aliceblue;
+    position: relative;
+    width: 1000px;
+    height: 500px;
+    margin: 190px;
+    border-radius: 30px;
+    text-shadow: #2c3338;
+}
+
+.box-title{
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+    margin-top: fill;
+}
 /* modules/anchor.css */
 
 :root {
