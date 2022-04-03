@@ -122,10 +122,11 @@ body {
 }
 
 .box-title{
-    font-size: 18px;
+    font-size: 50px;
     font-weight: bold;
     color: black;
     margin-top: fill;
+font-face-src: url(static/fonts/Sketch_3D.ttf)
 }
 /* modules/anchor.css */
 
