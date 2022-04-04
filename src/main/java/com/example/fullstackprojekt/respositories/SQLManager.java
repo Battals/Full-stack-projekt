@@ -13,10 +13,6 @@ public class SQLManager {
     private ResultSet rs;
     private String sqlString;
 
-    //User Attributes
-    private String user;
-    private String wishlist;
-
     /*
     Classes:
     Wish - name, link, date
@@ -32,34 +28,36 @@ public class SQLManager {
         establishConnection();
     }
 
-    public boolean login(String name, String password){ //User can log in, and program registers credentials
+    public boolean login(String username, String password){ //User can log in, and program registers credentials
         try{
             rs = stmt.executeQuery("SELECT * FROM users ORDER BY name");
             while(rs.next()){
-                if(password.equalsIgnoreCase(rs.getString("password"))){
-                    user = rs.getString("name");
-                    wishlist = "wishlist_" + rs.getString("name");
-                    System.out.println("user logged in: " + rs.getString("name"));
-                    return true;
+                if(rs.getString("name").equals(username)){
+                    System.out.println("user found");
+                    if(rs.getString("password").equals(password)){
+                        System.out.println("password matches");
+                        return true;
+                    } else {
+                        System.out.println("invalid password");
+                        return false;
+                    }
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("error");
+            System.out.println("error?");
         }
         return false;
     }
 
     public void logout(){ //logout function
-        user = null;
-        wishlist = null;
     }
 
     //User menu
-    public ArrayList<Wish> getWishlist(){ //Creates an ArrayList containing Wish objects
+    public ArrayList<Wish> getWishlist(String username){ //Creates an ArrayList containing Wish objects
         ArrayList<Wish> wishes = new ArrayList<>();
         try {
-            sqlString = "SELECT * FROM " + wishlist + " ORDER BY date";
+            sqlString = "SELECT * FROM wishlist_" + username + " ORDER BY date";
             rs = stmt.executeQuery(sqlString);
             while(rs.next()){
                 wishes.add(new Wish(rs.getString("name"), rs.getString("link"), rs.getString("date")));
@@ -70,9 +68,9 @@ public class SQLManager {
         return wishes;
     }
 
-    public void addWish(String name, String link){ //Adds a wish to current users wishlist
+    public void addWish(String name, String link, String username){ //Adds a wish to current users wishlist
         try {
-            sqlString = "INSERT INTO " + wishlist + "(name, link, date)" +
+            sqlString = "INSERT INTO wishlist_" + username + "(name, link, date)" +
                     " VALUES(" + name + ", " + link + ", " + LocalDate.now() + ")";
             stmt.executeUpdate(sqlString);
         } catch (SQLException e) {
@@ -80,9 +78,9 @@ public class SQLManager {
         }
     }
 
-    public void deleteWish(Wish wish){ //Deletes a wish from current users wishlist
+    public void deleteWish(String name, String username){ //Deletes a wish from current users wishlist
         try {
-            sqlString = "DELETE FROM " + wishlist + " WHERE name = " + wish.getName() + ")";
+            sqlString = "DELETE FROM wishlist_" + username + " WHERE name = " + name + ")";
             stmt.executeUpdate(sqlString);
         } catch (SQLException e) {
             e.printStackTrace();

@@ -26,7 +26,7 @@ public class Controller {
 
     @GetMapping("/login")
     public String battal(HttpSession session){
-        if(session.getAttribute("username")==null){
+        if(!(Boolean) session.getAttribute("logged-in")){
             return "indexBattal";
         } else {
             return "redirect:/";
@@ -35,7 +35,7 @@ public class Controller {
 
     @GetMapping("/create") //able to create a user
     public String createUser(HttpSession session){
-        if(session.getAttribute("username")==null) {
+        if(!(Boolean) session.getAttribute("logged-in")) {
             return "createUser";
         } else {
             return "redirect:/";
@@ -44,7 +44,7 @@ public class Controller {
 
     @GetMapping("/add-wish")//able to input a name and link, which will be added to wishlist as a wish
     public String addWish(HttpSession session){
-        if(session.getAttribute("username")==null){
+        if(!(Boolean) session.getAttribute("logged-in")){
             return "redirect:/";
         } else {
             return "addWish";
@@ -53,7 +53,7 @@ public class Controller {
 
     @GetMapping("/edit-wishlist") //Can remove wish, and redirect oneself to /add-wish
     public String editWishlist(HttpSession session){
-        if(session.getAttribute("username")==null){
+        if(!(Boolean) session.getAttribute("logged-in")){
             return "redirect:/";
         } else {
             return "editWishlist";
@@ -73,8 +73,10 @@ public class Controller {
         sql.start();
         try{
             if(sql.login(dataFromForm.getParameter("username"), dataFromForm.getParameter("password"))){
+                //successful login
                 session.setAttribute("username", dataFromForm.getParameter("username"));
             } else {
+                //invalid login
                 return "redirect:/login";
             }
         } catch (Exception e) {
@@ -89,7 +91,11 @@ public class Controller {
         sql.start();
         try {
             if(sql.createUser(dataFromForm.getParameter("username"), dataFromForm.getParameter("password"))){
+                //logged in after creating user
                 session.setAttribute("username", dataFromForm.getParameter("username"));
+                return "redirect:/";
+            } else {
+                return "redirect:/create";
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -98,12 +104,19 @@ public class Controller {
     }
 
     @PostMapping("/adding") //Add wish to the wishlist
-    public String adding(){
+    public String adding(WebRequest dataFromForm, HttpSession session){
+        SQLManager sqlManager = new SQLManager();
+        sqlManager.addWish(dataFromForm.getParameter("wish-name"),
+                dataFromForm.getParameter("wish-link"),
+                (String) session.getAttribute("username"));
         return "redirect:/add-wish";
     }
 
     @PostMapping("/removing") //Remove wish from the wishlist
-    public String removing(){
+    public String removing(WebRequest dataFromForm, HttpSession session){
+        SQLManager sqlManager = new SQLManager();
+        sqlManager.deleteWish(dataFromForm.getParameter("wish-name"),
+                (String) session.getAttribute("username"));
         return "redirect:/remove-wish";
     }
 }
