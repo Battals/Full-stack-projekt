@@ -21,6 +21,9 @@ public class Controller {
 
     @GetMapping("/")
     public String index(HttpSession session){
+        if(session.isNew()){
+            session.setAttribute("logged-in", false);
+        }
         return "index";
     }
 
