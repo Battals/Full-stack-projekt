@@ -19,7 +19,7 @@
 }
 
 h1 a {
-    font-size: 160px;
+    font-size: 10vw;
     color: black;
     text-decoration: none;
     text-transform: uppercase;
@@ -61,7 +61,7 @@ h1 a {
 
 .nav_list a {
     text-decoration: none;
-    font-size: 50px;
+    font-size: 3vw;
     color: black;
 }
 

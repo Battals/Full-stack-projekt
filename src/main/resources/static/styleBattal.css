@@ -10,18 +10,17 @@
 }
 
 .title {
-    position: page;
-    text-align: initial;
-    font-size: 20px;
+    text-align: center;
+    font-size: 1vw;
     font-weight: lighter;
     color: black;
+    justify-content: center;
 }
 
 .title1 {
     font-family: "Sketch 3D", sans-serif;
-    position: page;
     text-align: center;
-    font-size: 100px;
+    font-size: 8vw;
     color: black;
 }
 
@@ -37,7 +36,9 @@
 
 .align {
     display: grid;
-    place-items: center;
+    justify-content: space-around;
+    justify-items: center;
+    align-content: space-around;
 }
 
 .grid {
@@ -131,9 +132,6 @@ body {
 a {
     color: black;
     outline: 0;
-    text-align: center;
-    position: fixed; bottom: 19%;
-    left: 47%;
 }
 
 a:focus,
@@ -236,6 +234,7 @@ input[type="submit"] {
     color: var(--loginSubmitColor);
     font-weight: 700;
     text-transform: uppercase;
+    text-align: center;
 }
 
 .login input[type="submit"]:focus,
@@ -246,7 +245,9 @@ input[type="submit"] {
 /* modules/text.css */
 
 p {
-    margin-block: 1.5rem;
+    position: relative;
+    bottom: 4vw;
+    font-size: 0.8vw;
 }
 
 .text--center {
