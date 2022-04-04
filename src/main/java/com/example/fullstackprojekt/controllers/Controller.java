@@ -84,6 +84,7 @@ public class Controller {
             if(sql.login(dataFromForm.getParameter("username"), dataFromForm.getParameter("password"))){
                 //successful login
                 session.setAttribute("username", dataFromForm.getParameter("username"));
+                return "redirect:/";
             } else {
                 //invalid login
                 return "redirect:/login";
@@ -91,7 +92,7 @@ public class Controller {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "redirect:/";
+        return "redirect:/login";
     }
 
     @PostMapping("/creating") //Create a new user
