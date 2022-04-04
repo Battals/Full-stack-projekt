@@ -4,8 +4,6 @@
 }
 
 
-
-
 html,body {
     background-color: azure;
     min-height: 100vh;
@@ -15,8 +13,6 @@ h1 {
     font-family: "Sketch 3D", sans-serif;
     font-size: 3vw;
 }
-
-
 .box {
     margin: auto;
     width: 50%;
@@ -27,14 +23,12 @@ h1 {
     flex-direction: column;
 }
 
-
-
 .text1{
     font-size: 1vw;
     color: #7ea0bb;
     font-weight: lighter;
     text-align: center;
-
+    font-family: "Roboto Light", sans-serif;
 }
 
 
@@ -43,4 +37,5 @@ h1 {
     color: #bb8aad;
     font-weight: lighter;
     text-align: center;
+    font-family: "Roboto Light", sans-serif;
 }
