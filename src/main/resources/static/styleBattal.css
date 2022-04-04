@@ -1,6 +1,6 @@
 @font-face {
     font-family: "Sketch 3D";
-    src: url(static/fonts/Sketch_3D.ttf);
+    src: url(fonts/Sketch_3D.ttf);
 }
 
 
@@ -118,15 +118,10 @@ body {
     height: 500px;
     margin: 190px;
     border-radius: 30px;
-    text-shadow: #2c3338;
+    font-size: 450%;
+    font-family: "Sketch 3D", serif;
 }
 
-.box-title{
-    font-size: 50px;
-    font-weight: bold;
-    color: black;
-    margin-top: fill;
-}
 /* modules/anchor.css */
 
 :root {
