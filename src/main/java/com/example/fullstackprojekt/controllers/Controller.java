@@ -21,8 +21,14 @@ public class Controller {
 
     @GetMapping("/")
     public String index(HttpSession session){
-        if(session.isNew()){
-            session.setAttribute("logged-in", false);
+        try {
+            if(session.getAttribute("logged-in")!=null){
+                //nice ig
+            } else {
+                session.setAttribute("logged-in", false);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return "index";
     }
