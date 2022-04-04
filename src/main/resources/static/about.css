@@ -1,0 +1,46 @@
+@font-face {
+    font-family: "Sketch 3D";
+    src: url(fonts/Sketch_3D.ttf);
+}
+
+
+
+
+html,body {
+    background-color: azure;
+    min-height: 100vh;
+}
+
+h1 {
+    font-family: "Sketch 3D", sans-serif;
+    font-size: 3vw;
+}
+
+
+.box {
+    margin: auto;
+    width: 50%;
+    height: 50vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+
+.text1{
+    font-size: 1vw;
+    color: #7ea0bb;
+    font-weight: lighter;
+    text-align: center;
+
+}
+
+
+.text2{
+    font-size: 1vw;
+    color: #bb8aad;
+    font-weight: lighter;
+    text-align: center;
+}

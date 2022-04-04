@@ -112,16 +112,7 @@ body {
     min-block-size: 100vh;
 }
 
-.box{
-    background: aliceblue;
-    position: relative;
-    width: 1000px;
-    height: 500px;
-    margin: 190px;
-    border-radius: 30px;
-    font-size: 450%;
-    font-family: "Sketch 3D", serif;
-}
+
 
 /* modules/anchor.css */
 
