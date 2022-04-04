@@ -5,7 +5,7 @@ public class Wish {
     private final String link;
     private final String date;
 
-    public Wish(String name, String link, String date){
+    public Wish(String name, String link, String date) {
         this.name = name;
         this.link = link;
         this.date = date;

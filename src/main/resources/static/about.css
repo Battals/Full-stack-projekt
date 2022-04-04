@@ -1,10 +1,10 @@
 @font-face {
     font-family: "Sketch 3D";
-    src: url(../fonts/Sketch_3D.ttf);
+    src: url(/fonts/Sketch_3D.ttf);
 }
 
 
-html,body {
+html, body {
     background-color: azure;
     min-height: 100vh;
 }
@@ -13,6 +13,7 @@ h1 {
     font-family: "Sketch 3D", sans-serif;
     font-size: 3vw;
 }
+
 .box {
     margin: auto;
     width: 50%;
@@ -23,7 +24,7 @@ h1 {
     flex-direction: column;
 }
 
-.text1{
+.text1 {
     font-size: 1vw;
     color: #7ea0bb;
     font-weight: lighter;
@@ -32,7 +33,7 @@ h1 {
 }
 
 
-.text2{
+.text2 {
     font-size: 1vw;
     color: #bb8aad;
     font-weight: lighter;

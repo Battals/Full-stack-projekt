@@ -24,17 +24,17 @@ public class SQLManager {
 
 
     //Tools
-    public void start(){
+    public void start() {
         establishConnection();
     }
 
-    public boolean login(String username, String password){ //User can log in, and program registers credentials
-        try{
+    public boolean login(String username, String password) { //User can log in, and program registers credentials
+        try {
             rs = stmt.executeQuery("SELECT * FROM users ORDER BY name");
-            while(rs.next()){
-                if(rs.getString("name").equals(username)){
+            while (rs.next()) {
+                if (rs.getString("name").equals(username)) {
                     System.out.println("user found");
-                    if(rs.getString("password").equals(password)){
+                    if (rs.getString("password").equals(password)) {
                         System.out.println("password matches");
                         return true;
                     } else {
@@ -50,16 +50,16 @@ public class SQLManager {
         return false;
     }
 
-    public void logout(){ //logout function
+    public void logout() { //logout function
     }
 
     //User menu
-    public ArrayList<Wish> getWishlist(String username){ //Creates an ArrayList containing Wish objects
+    public ArrayList<Wish> getWishlist(String username) { //Creates an ArrayList containing Wish objects
         ArrayList<Wish> wishes = new ArrayList<>();
         try {
             sqlString = "SELECT * FROM wishlist_" + username + " ORDER BY date";
             rs = stmt.executeQuery(sqlString);
-            while(rs.next()){
+            while (rs.next()) {
                 wishes.add(new Wish(rs.getString("name"), rs.getString("link"), rs.getString("date")));
             }
         } catch (SQLException e) {
@@ -68,7 +68,7 @@ public class SQLManager {
         return wishes;
     }
 
-    public void addWish(String name, String link, String username){ //Adds a wish to current users wishlist
+    public void addWish(String name, String link, String username) { //Adds a wish to current users wishlist
         try {
             sqlString = "INSERT INTO wishlist_" + username + "(name, link, date)" +
                     " VALUES(" + name + ", " + link + ", " + LocalDate.now() + ")";
@@ -78,7 +78,7 @@ public class SQLManager {
         }
     }
 
-    public void deleteWish(String name, String username){ //Deletes a wish from current users wishlist
+    public void deleteWish(String name, String username) { //Deletes a wish from current users wishlist
         try {
             sqlString = "DELETE FROM wishlist_" + username + " WHERE name = " + name + ")";
             stmt.executeUpdate(sqlString);
@@ -88,10 +88,11 @@ public class SQLManager {
     }
 
     //Admin Menu
-    private void runOnFirstStartUp(){
+    private void runOnFirstStartUp() {
     }
-    public boolean createUser(String username, String password){ //Creates a new user
-        try{
+
+    public boolean createUser(String username, String password) { //Creates a new user
+        try {
             try {
                 stmt.executeUpdate("DROP TABLE wishlist_" + username);
                 System.out.println("deleting old list=");
@@ -106,7 +107,8 @@ public class SQLManager {
         }
         return false;
     }
-    public void deleteUser(String username){ //Deletes user and their wishlist
+
+    public void deleteUser(String username) { //Deletes user and their wishlist
         try {
             stmt.executeUpdate("DROP TABLE wishlist_" + username);
             stmt.executeUpdate("DELETE FROM users WHERE name = '" + username + "'");
@@ -115,12 +117,13 @@ public class SQLManager {
             e.printStackTrace();
         }
     }
-    public boolean userExists(String username){ //returns a boolean whether username is used or not
+
+    public boolean userExists(String username) { //returns a boolean whether username is used or not
         boolean userExists = false;
         try {
             stmt.executeQuery("SELECT * FROM users");
-            while(rs.next()){
-                if(rs.getString("name").equalsIgnoreCase(username)){
+            while (rs.next()) {
+                if (rs.getString("name").equalsIgnoreCase(username)) {
                     userExists = true;
                 }
             }
@@ -131,8 +134,8 @@ public class SQLManager {
     }
 
     //System Management
-    private void establishConnection(){ //Creates a connection to the sql database
-        String url ="jdbc:mysql://wishlist1.mysql.database.azure.com:3306/ønskeliste?useSSL=true&requireSSL=false";
+    private void establishConnection() { //Creates a connection to the sql database
+        String url = "jdbc:mysql://wishlist1.mysql.database.azure.com:3306/ønskeliste?useSSL=true&requireSSL=false";
         String rootName = "admin1@wishlist1";
         String password = "Hej12345";
         //Process

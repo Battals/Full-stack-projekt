@@ -1,7 +1,6 @@
 package com.example.fullstackprojekt.controllers;
 
 
-
 import com.example.fullstackprojekt.respositories.SQLManager;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,9 +19,9 @@ public class Controller {
      */
 
     @GetMapping("/")
-    public String index(HttpSession session){
+    public String index(HttpSession session) {
         try {
-            if(session.getAttribute("logged-in")!=null){
+            if (session.getAttribute("logged-in") != null) {
                 //nice ig
             } else {
                 session.setAttribute("logged-in", false);
@@ -34,8 +33,8 @@ public class Controller {
     }
 
     @GetMapping("/login")
-    public String battal(HttpSession session){
-        if(!(Boolean) session.getAttribute("logged-in")){
+    public String battal(HttpSession session) {
+        if (!(Boolean) session.getAttribute("logged-in")) {
             return "indexBattal";
         } else {
             return "redirect:/";
@@ -43,8 +42,8 @@ public class Controller {
     }
 
     @GetMapping("/create") //able to create a user
-    public String createUser(HttpSession session){
-        if(!(Boolean) session.getAttribute("logged-in")) {
+    public String createUser(HttpSession session) {
+        if (!(Boolean) session.getAttribute("logged-in")) {
             return "createUser";
         } else {
             return "redirect:/";
@@ -52,8 +51,8 @@ public class Controller {
     }
 
     @GetMapping("/add-wish")//able to input a name and link, which will be added to wishlist as a wish
-    public String addWish(HttpSession session){
-        if(!(Boolean) session.getAttribute("logged-in")){
+    public String addWish(HttpSession session) {
+        if (!(Boolean) session.getAttribute("logged-in")) {
             return "redirect:/";
         } else {
             return "addWish";
@@ -61,8 +60,8 @@ public class Controller {
     }
 
     @GetMapping("/edit-wishlist") //Can remove wish, and redirect oneself to /add-wish
-    public String editWishlist(HttpSession session){
-        if(!(Boolean) session.getAttribute("logged-in")){
+    public String editWishlist(HttpSession session) {
+        if (!(Boolean) session.getAttribute("logged-in")) {
             return "redirect:/";
         } else {
             return "editWishlist";
@@ -70,18 +69,18 @@ public class Controller {
     }
 
     @GetMapping("/about") //lav en html med about?
-    public String about(){
+    public String about() {
         return "about"; //
     }
 
 
     //post mapping for user, dataFromForm is input put into string form
     @PostMapping("/logging") //log into an existing user
-    public String logging(WebRequest dataFromForm, HttpSession session){
+    public String logging(WebRequest dataFromForm, HttpSession session) {
         SQLManager sql = new SQLManager();
         sql.start();
-        try{
-            if(sql.login(dataFromForm.getParameter("username"), dataFromForm.getParameter("password"))){
+        try {
+            if (sql.login(dataFromForm.getParameter("username"), dataFromForm.getParameter("password"))) {
                 //successful login
                 session.setAttribute("username", dataFromForm.getParameter("username"));
                 return "redirect:/";
@@ -96,11 +95,11 @@ public class Controller {
     }
 
     @PostMapping("/creating") //Create a new user
-    public String creating(WebRequest dataFromForm, HttpSession session){
+    public String creating(WebRequest dataFromForm, HttpSession session) {
         SQLManager sql = new SQLManager();
         sql.start();
         try {
-            if(sql.createUser(dataFromForm.getParameter("username"), dataFromForm.getParameter("password"))){
+            if (sql.createUser(dataFromForm.getParameter("username"), dataFromForm.getParameter("password"))) {
                 //logged in after creating user
                 System.out.println("user created");
                 session.setAttribute("username", dataFromForm.getParameter("username"));
@@ -115,7 +114,7 @@ public class Controller {
     }
 
     @PostMapping("/adding") //Add wish to the wishlist
-    public String adding(WebRequest dataFromForm, HttpSession session){
+    public String adding(WebRequest dataFromForm, HttpSession session) {
         SQLManager sqlManager = new SQLManager();
         sqlManager.addWish(dataFromForm.getParameter("wish-name"),
                 dataFromForm.getParameter("wish-link"),
@@ -124,7 +123,7 @@ public class Controller {
     }
 
     @PostMapping("/removing") //Remove wish from the wishlist
-    public String removing(WebRequest dataFromForm, HttpSession session){
+    public String removing(WebRequest dataFromForm, HttpSession session) {
         SQLManager sqlManager = new SQLManager();
         sqlManager.deleteWish(dataFromForm.getParameter("wish-name"),
                 (String) session.getAttribute("username"));

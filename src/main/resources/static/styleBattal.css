@@ -1,8 +1,7 @@
 @font-face {
     font-family: "Sketch 3D";
-    src: url(../fonts/Sketch_3D.ttf);
+    src: url(/fonts/Sketch_3D.ttf);
 }
-
 
 
 :root {
@@ -25,8 +24,7 @@
 }
 
 
-
-.top-image{
+.top-image {
     width: 50%;
     height: 50%;
     padding: 25px;
@@ -111,7 +109,6 @@ body {
     margin: 0;
     min-block-size: 100vh;
 }
-
 
 
 /* modules/anchor.css */
