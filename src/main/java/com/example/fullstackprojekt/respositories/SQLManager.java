@@ -94,8 +94,10 @@ public class SQLManager {
         try{
             try {
                 stmt.executeUpdate("DROP TABLE wishlist_" + username);
+                System.out.println("deleting old list=");
             } catch (SQLException e) {
                 //no prior wishlists for username
+                System.out.println("new user");
             }
             stmt.executeUpdate("INSERT INTO users VALUES('" + username + "', '" + password + "')");
             return true;

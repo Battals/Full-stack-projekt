@@ -102,6 +102,7 @@ public class Controller {
         try {
             if(sql.createUser(dataFromForm.getParameter("username"), dataFromForm.getParameter("password"))){
                 //logged in after creating user
+                System.out.println("user created");
                 session.setAttribute("username", dataFromForm.getParameter("username"));
                 return "redirect:/";
             } else {
