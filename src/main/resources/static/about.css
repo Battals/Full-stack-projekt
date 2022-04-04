@@ -25,7 +25,7 @@ h1 {
 }
 
 .text1 {
-    font-size: 1vw;
+    font-size: 1.3vw;
     color: #7ea0bb;
     font-weight: lighter;
     text-align: center;
@@ -33,10 +33,26 @@ h1 {
 }
 
 
+
+
 .text2 {
-    font-size: 1vw;
+    font-size: 1.3vw;
     color: #bb8aad;
     font-weight: lighter;
     text-align: center;
     font-family: "Roboto", sans-serif;
+}
+.info{
+     margin-left: 28.4%;
+    margin-top: -2.45%;
+ }
+
+.mail{
+    margin-left: 40%;
+    margin-top: -2.45%;
+}
+
+.adress{
+    margin-left: 55%;
+    margin-top: -2.45%;
 }
