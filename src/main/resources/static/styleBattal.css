@@ -25,7 +25,6 @@
 }
 .cutitle{
     text-align: center;
-    margin-top: 40%;
     font-size: 1vw;
     font-weight: lighter;
     color: black;
@@ -37,6 +36,13 @@
     text-align: center;
     font-size: 8vw;
     color: black;
+}
+
+p a {
+    position: relative;
+    bottom: 3.5vw;
+    font-size: 1vw;
+    font-weight: lighter;
 }
 
 
@@ -248,10 +254,10 @@ input[type="submit"] {
 
 /* modules/text.css */
 
-p {
+p a {
     position: relative;
-    bottom: 4vw;
-    font-size: 0.8vw;
+    bottom: 3.5vw;
+    font-size: 1vw;
 }
 
 .text--center {
