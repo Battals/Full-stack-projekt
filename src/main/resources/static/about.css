@@ -29,10 +29,15 @@ h1 {
     color: #7ea0bb;
     font-weight: lighter;
     text-align: center;
-    font-family: "Roboto", sans-serif;
+    font-family: Roboto, sans-serif;
 }
 
-
+.contact{
+    display: flex;
+    justify-content: center;
+    border-top-style: solid;
+    font-family: Roboto, sans-serif;
+}
 
 
 .text2 {
@@ -40,7 +45,7 @@ h1 {
     color: #bb8aad;
     font-weight: lighter;
     text-align: center;
-    font-family: "Roboto", sans-serif;
+    font-family: Roboto, sans-serif;
 }
 .info{
      margin-left: 28.4%;
