@@ -1,5 +1,5 @@
 @font-face {
-    font-family: "Sketch";
+    font-family: "Sketch 3D";
     src: url(/fonts/sketch-3d.ttf);
 }
 
@@ -8,11 +8,18 @@ html, body {
     background-color: azure;
     min-height: 100vh;
 }
+footer {
+    display: flex;
+    justify-content: center;
+    border-top-style: solid;
+    font-family: Roboto, sans-serif;
+}
 
 h1 {
-    font-family: "Sketch", sans-serif;
+    font-family: "Sketch 3D", sans-serif;
     font-size: 3.5vw;
     text-transform: uppercase;
+    color: #bb8aad;
 }
 
 .box {
@@ -33,12 +40,6 @@ h1 {
     font-family: Roboto, sans-serif;
 }
 
-.contact{
-    display: flex;
-    justify-content: center;
-    border-top-style: solid;
-    font-family: Roboto, sans-serif;
-}
 
 
 .text2 {

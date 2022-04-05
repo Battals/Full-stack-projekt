@@ -59,6 +59,16 @@ public class Controller {
         }
     }
 
+    @GetMapping("/account")
+    public String loggedIn(HttpSession session){
+        if (!(Boolean) session.getAttribute("logged-in")){
+            return "index-logged-in";
+        } else {
+            return "redirect:/";
+        }
+    }
+
+
     @GetMapping("/edit-wishlist") //Can remove wish, and redirect oneself to /add-wish
     public String editWishlist(HttpSession session) {
         if (!(Boolean) session.getAttribute("logged-in")) {
