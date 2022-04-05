@@ -1,6 +1,6 @@
 @font-face {
-    font-family: "Sketch 3D";
-    src: url(/fonts/Sketch_3D.ttf);
+    font-family: "Sketch";
+    src: url(fonts/Sketch-3D.ttf);
 }
 
 
@@ -10,7 +10,7 @@ html, body {
 }
 
 h1 {
-    font-family: "Sketch 3D", sans-serif;
+    font-family: "Sketch", sans-serif;
     font-size: 3vw;
 }
 

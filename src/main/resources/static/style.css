@@ -1,13 +1,12 @@
 @font-face {
-    font-family: "Sketch 3D";
-    src: url(/fonts/Sketch_3D.ttf)
+    font-family: "Sketch";
+    src: url(fonts/Sketch-3D.ttf)
 }
 
 * {
     margin: 0;
     padding: 0;
-    font-family: "Sketch 3D", sans-serif;
-
+    font-family: "Sketch", sans-serif;
 }
 
 .container {
