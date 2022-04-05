@@ -8,22 +8,43 @@
     --baseColor: grey;
 }
 
-.createUser-title{
-    font-family: "Sketch", "sans-serif";
+.createUser-title {
+    font-family: "Sketch 3D", sans-serif;
     text-transform: uppercase;
-    position: relative; top: -40%; left: 31%;
+    display: flex;
+    justify-content: center;
+    font-size: 4vw;
+    color: black;
 
 }
 
 .title {
     text-align: center;
     font-size: 1vw;
-    position: relative; top: 80%;
+    position: relative;
+    top: 80%;
     font-weight: lighter;
     color: black;
     justify-content: center;
 }
-.cutitle{
+
+.cutitle {
+    text-align: center;
+    font-size: 1vw;
+    font-weight: lighter;
+    color: black;
+    justify-content: center;
+}
+
+h2 {
+    text-align: center;
+    font-size: 1vw;
+    font-weight: lighter;
+    color: black;
+    justify-content: center;
+}
+
+h3 {
     text-align: center;
     font-size: 1vw;
     font-weight: lighter;
