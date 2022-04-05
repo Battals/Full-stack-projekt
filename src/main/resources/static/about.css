@@ -11,7 +11,8 @@ html, body {
 
 h1 {
     font-family: "Sketch", sans-serif;
-    font-size: 3vw;
+    font-size: 3.5vw;
+    text-transform: uppercase;
 }
 
 .box {

@@ -1,6 +1,6 @@
 @font-face {
     font-family: "Sketch";
-    src: url(/fonts/Sketch-3D.ttf);
+    src: url(/fonts/sketch-3D.ttf);
 }
 
 
@@ -8,8 +8,24 @@
     --baseColor: grey;
 }
 
+.createUser-title{
+    font-family: "Sketch", "sans-serif";
+    text-transform: uppercase;
+    position: relative; top: -40%; left: 31%;
+
+}
+
 .title {
     text-align: center;
+    font-size: 1vw;
+    position: relative; top: 80%;
+    font-weight: lighter;
+    color: black;
+    justify-content: center;
+}
+.cutitle{
+    text-align: center;
+    margin-top: 40%;
     font-size: 1vw;
     font-weight: lighter;
     color: black;
@@ -107,7 +123,7 @@ body {
     font-weight: var(--bodyFontWeight);
     line-height: var(--bodyLineHeight);
     margin: 0;
-    min-block-size: 100vh;
+    min-block-size: 85vh;
 }
 
 
