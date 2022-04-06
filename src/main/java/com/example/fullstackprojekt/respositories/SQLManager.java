@@ -55,10 +55,10 @@ public class SQLManager {
     public ArrayList<Wish> getWishlist(String username) { //Creates an ArrayList containing Wish objects
         ArrayList<Wish> wishes = new ArrayList<>();
         try {
-            sqlString = "SELECT * FROM wishlist_" + username + " ORDER BY date";
+            sqlString = "SELECT * FROM wishlist_" + username + " ORDER BY wish_name";
             rs = stmt.executeQuery(sqlString);
             while (rs.next()) {
-                wishes.add(new Wish(rs.getString("name"), rs.getString("link"), rs.getString("date")));
+                wishes.add(new Wish(rs.getString("wish_name"), rs.getString("wish_link")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -75,9 +75,11 @@ public class SQLManager {
             e.printStackTrace();
         }
     }
+
     public void deleteWish(String name, String username) { //Deletes a wish from current users wishlist
         try {
-            sqlString = "DELETE FROM wishlist_" + username + " WHERE name = " + name + ")";
+            sqlString = "DELETE FROM wishlist_" + username + " WHERE wish_name = '" + name + "'";
+            System.out.println(sqlString);
             stmt.executeUpdate(sqlString);
         } catch (SQLException e) {
             e.printStackTrace();

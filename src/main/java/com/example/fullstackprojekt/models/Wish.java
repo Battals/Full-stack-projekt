@@ -3,12 +3,10 @@ package com.example.fullstackprojekt.models;
 public class Wish {
     private final String name;
     private final String link;
-    private final String date;
 
-    public Wish(String name, String link, String date) {
+    public Wish(String name, String link) {
         this.name = name;
         this.link = link;
-        this.date = date;
     }
 
     public String getName() {
@@ -17,10 +15,6 @@ public class Wish {
 
     public String getLink() {
         return link;
-    }
-
-    public String getDate() {
-        return date;
     }
 
     @Override

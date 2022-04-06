@@ -1,6 +1,7 @@
 package com.example.fullstackprojekt.controllers;
 
 
+import com.example.fullstackprojekt.models.Wish;
 import com.example.fullstackprojekt.respositories.SQLManager;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 
 
 @org.springframework.stereotype.Controller
@@ -69,6 +71,27 @@ public class Controller {
         }
     }
 
+    @GetMapping("/view-wishlist")
+    public String viewWishlist(HttpSession session){
+        SQLManager sql = new SQLManager();
+        sql.start();
+        try {
+            //Laver arraylist med brugerens ønsker
+            ArrayList<Wish> wishes = sql.getWishlist((String) session.getAttribute("username"));
+
+            //Laver en String med brugerens ønsker fra arraylisten
+            //wish.getName() = String med navnet
+            //wish.getLink() = String med linket
+            String list = "List of " + (String) session.getAttribute("username") + " wishlist:";
+            for (Wish wish : wishes) {
+                list += "\n" + wish.getName() + ":  " + wish.getLink();
+            }
+            System.out.println(list);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "redirect:/account";
+    }
 
     @GetMapping("/edit-wishlist") //Can remove wish, and redirect oneself to /add-wish
     public String editWishlist(HttpSession session) {
@@ -79,11 +102,18 @@ public class Controller {
         }
     }
 
+    @GetMapping("/delete-wish")
+    public String deleteWish(HttpSession session) {
+        SQLManager sql = new SQLManager();
+        sql.start();
+        //sql.deleteWish("Navnet på ønsket der skal slettes", (String) session.getAttribute("username"));
+        return "redirect:/";
+    }
+
     @GetMapping("/about") //lav en html med about?
     public String about() {
         return "about"; //
     }
-
 
     //post mapping for user, dataFromForm is input put into string form
     @PostMapping("/logging") //log into an existing user
