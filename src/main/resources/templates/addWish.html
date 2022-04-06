@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,15 +10,31 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Din Forside</title>
-<link rel="stylesheet" th:href="@{index-logged-in.css}" href="../static/index-logged-in.css">
+<link rel="stylesheet" th:href="@{styleaddWish.css}" href="../static/styleaddWish.css">
 </head>
 
 
 <div class="icon-bar">
     <a class="active" href="#"><i class="fa fa-home"></i></a>
-    <a href="#"><i class="fa fa-search"></i></a>
+    <a href="/addWish"><i class="fa fa-search"></i></a>
     <a href="#"><i class="fa-solid fa-list-check"></i></a>
     <a href="#"><i class="fa fa-trash"></i></a>
 </div>
+
+<h1 class="opret-ønskeseddel">
+    Din ønskeseddel 🛍
+</h1>
+
+
+<div class="form-group">
+
+    <input v-model="newItemName" placeholder="Hvad ønsker du?">
+
+    <input v-model="newItemLink" placeholder="Link/Url">
+
+    <button v-on:click="addItem">+</button>
+</div>
+
+
 </body>
 </html>

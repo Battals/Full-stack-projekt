@@ -1,0 +1,60 @@
+body {
+    background-color: azure;
+}
+
+.icon-bar {
+    width: 90px; /* Set a specific width */
+    background-color: azure; /* Dark-grey background */
+}
+
+.icon-bar a {
+    display: block; /* Make the links appear below each other instead of side-by-side */
+    text-align: center; /* Center-align text */
+    padding: 16px; /* Add some padding */
+    transition: all 0.3s ease; /* Add transition for hover effects */
+    color: #bb8aad; /* White text color */
+    font-size: 36px; /* Increased font-size */
+}
+
+.icon-bar a:hover {
+    background-color: black; /* Add a hover color */
+}
+
+.active {
+    background-color: #7ea0bb; /* Add an active/current color */
+}
+
+.opret-ønskeseddel {
+    font-family: "Sketch 3D", sans-serif;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    font-size: 3.5vw;
+    color: black;
+    margin: 1.5vw;
+}
+
+.form-group {
+    position: relative;
+    margin: 5vw;
+    text-align: center;
+
+}
+
+input {
+    height: 1vw;
+    width: 40%;
+    padding: 0.5vw;
+    font-weight: bold;
+    border: 1px dashed #bb8aad;
+    color: #bb8aad;
+    border-radius: 0.7vw;
+}
+
+button {
+    color: #bb8aad;
+    position: relative;
+    padding: 0.3vw;
+    width: 2.1vw;
+}
+
