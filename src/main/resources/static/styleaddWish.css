@@ -36,14 +36,13 @@ body {
 
 .form-group {
     position: relative;
-    margin: 5vw;
     text-align: center;
 
 }
 
 input {
-    height: 1vw;
     width: 40%;
+    height: 2.3vw;
     padding: 0.5vw;
     font-weight: bold;
     border: 1px dashed #bb8aad;
