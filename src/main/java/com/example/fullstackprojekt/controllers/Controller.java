@@ -93,7 +93,7 @@ public class Controller {
             if (sql.login(dataFromForm.getParameter("username"), dataFromForm.getParameter("password"))) {
                 //successful login
                 session.setAttribute("username", dataFromForm.getParameter("username"));
-                return "redirect:/";
+                return "redirect:/account";
             } else {
                 //invalid login
                 return "redirect:/login";
