@@ -28,9 +28,9 @@ public class SQLManager {
 
     public boolean login(String username, String password) { //User can log in, and program registers credentials
         try {
-            rs = stmt.executeQuery("SELECT * FROM users ORDER BY name");
+            rs = stmt.executeQuery("SELECT * FROM users ORDER BY username");
             while (rs.next()) {
-                if (rs.getString("name").equals(username)) {
+                if (rs.getString("username").equals(username)) {
                     System.out.println("user found");
                     if (rs.getString("password").equals(password)) {
                         System.out.println("password matches");
