@@ -132,6 +132,8 @@ public class Controller {
         return "redirect:/add-wish";
     }
 
+
+
     @PostMapping("/removing") //Remove wish from the wishlist
     public String removing(WebRequest dataFromForm, HttpSession session) {
         SQLManager sqlManager = new SQLManager();
@@ -139,4 +141,5 @@ public class Controller {
                 (String) session.getAttribute("username"));
         return "redirect:/remove-wish";
     }
+
 }
