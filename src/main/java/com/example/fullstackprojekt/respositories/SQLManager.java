@@ -7,8 +7,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class SQLManager {
-    //SQL Attributes
-    private Connection con;
     private Statement stmt;
     private ResultSet rs;
     private String sqlString;
@@ -135,16 +133,15 @@ public class SQLManager {
 
     //System Management
     private void establishConnection() { //Creates a connection to the sql database
-        String url = "jdbc:mysql://wishlist1.mysql.database.azure.com:3306/ønskeliste?useSSL=true&requireSSL=false";
-        String rootName = "admin1@wishlist1";
-        String password = "Hej12345";
+        String url ="jdbc:mysql://onskelisten.mysql.database.azure.com:3306/ønskelisten?useSSL=true&requireSSL=false";
         //Process
         try {
             //Define URL of the database
             System.out.println("url defined");
 
             //Get connection to database
-            con = DriverManager.getConnection(url, rootName, password);
+            //SQL Attributes
+            Connection con = DriverManager.getConnection(url, "admin1@onskelisten", "Hej12345");
             System.out.println("connection made");
 
             //Display the URL and connection information
