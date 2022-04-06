@@ -54,9 +54,9 @@ public class Controller {
     @GetMapping("/add-wish")//able to input a name and link, which will be added to wishlist as a wish
     public String addWish(HttpSession session) {
         if (!(Boolean) session.getAttribute("logged-in")) {
-            return "redirect:/";
-        } else {
             return "addWish";
+        } else {
+            return "redirect:/";
         }
     }
 
