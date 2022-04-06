@@ -132,19 +132,17 @@ public class Controller {
             sqlManager.addWish(dataFromForm.getParameter("wish_name"),
                     dataFromForm.getParameter("wish_link"),
                     (String) session.getAttribute("username"));
-        }catch (Exception ignored) {
-        }
-            return "redirect:/add-wish";
+        } catch (Exception ignored) {
 
         }
-
-
-        @PostMapping("/removing") //Remove wish from the wishlist
-        public String removing (WebRequest dataFromForm, HttpSession session){
-            SQLManager sqlManager = new SQLManager();
-            sqlManager.deleteWish(dataFromForm.getParameter("wish-name"),
-                    (String) session.getAttribute("username"));
-            return "redirect:/remove-wish";
-        }
-
+        return "redirect:/add-wish";
     }
+
+    @PostMapping("/removing") //Remove wish from the wishlist
+    public String removing(WebRequest dataFromForm, HttpSession session) {
+        SQLManager sqlManager = new SQLManager();
+        sqlManager.deleteWish(dataFromForm.getParameter("wish-name"),
+                (String) session.getAttribute("username"));
+        return "redirect:/remove-wish";
+    }
+}
