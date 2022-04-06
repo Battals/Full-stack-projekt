@@ -69,7 +69,7 @@ public class SQLManager {
     public void addWish(String name, String link, String username) { //Adds a wish to current users wishlist
         try {
             sqlString = "INSERT INTO wishlist_" + username + "(wish_name, wish_link)" +
-                    " VALUES(" + name + ", " + link + ")";
+                    " VALUES('" + name + "', '" + link + "')";
             stmt.executeUpdate(sqlString);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -121,7 +121,6 @@ public class SQLManager {
             e.printStackTrace();
         }
     }
-
     public boolean userExists(String username) { //returns a boolean whether username is used or not
         boolean userExists = false;
         try {

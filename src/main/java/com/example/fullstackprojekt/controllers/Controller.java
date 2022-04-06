@@ -126,8 +126,9 @@ public class Controller {
 
     @PostMapping("/adding") //Add wish to the wishlis
     public String adding(WebRequest dataFromForm, HttpSession session) {
+        SQLManager sqlManager = new SQLManager();
+        sqlManager.start();
         try {
-            SQLManager sqlManager = new SQLManager();
             sqlManager.addWish(dataFromForm.getParameter("wish_name"),
                     dataFromForm.getParameter("wish_link"),
                     (String) session.getAttribute("username"));

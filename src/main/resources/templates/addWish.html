@@ -11,32 +11,37 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Din Forside</title>
 <link rel="stylesheet" th:href="@{styleaddWish.css}" href="../static/styleaddWish.css">
+<link rel="stylesheet" th:href="@{styleBattal.css}" href="../static/styleBattal.css">
 </head>
 
 
 <div class="icon-bar">
-    <form method="POST" action="/adding" class="createWish">
+
     <a class="active" href="#"><i class="fa fa-home"></i></a>
     <a href="#"><i class="fa-solid fa-user"></i></a>
     <a href="/add-wish"><i class="fa-solid fa-list-check"></i></a>
     <a href="#"><i class="fa fa-trash"></i></a>
-
 </div>
 
 <h1 class="opret-ønskeseddel">
     Din ønskeseddel 🛍
 </h1>
 
+<form method="POST" action="/adding" class="form-group">
+    <div class="form-group">
+        <label for="wish_name">
+            <span class="hidden">Wish Name</span></label>
+        <input autocomplete="wish_name" id="wish_name" type="text" name="wish_name" class="form__input"
+               placeholder="Hvad ønsker du?" required>
 
-<div class="form-group">
+        <label for="wish_link">
+            <span class="hidden">Wish Link</span></label>
+        <input autocomplete="wish_link" id="wish_link" type="text" name="wish_link" class="form__input"
+               placeholder="Link/Url" required>
 
-    <input v-model="newItemName" placeholder="Hvad ønsker du?">
-
-    <input v-model="newItemLink" placeholder="Link/Url">
-
-    <button v-on:click="addItem">+</button>
-</div>
-
+        <button type="submit" v-on:click="addItem">+</button>
+    </div>
+</form>
 
 </body>
 </html>
