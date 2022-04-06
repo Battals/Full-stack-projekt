@@ -68,8 +68,8 @@ public class SQLManager {
 
     public void addWish(String name, String link, String username) { //Adds a wish to current users wishlist
         try {
-            sqlString = "INSERT INTO wishlist_" + username + "(name, link, date)" +
-                    " VALUES(" + name + ", " + link + ", " + LocalDate.now() + ")";
+            sqlString = "INSERT INTO wishlist_" + username + "(wish_name, wish_link)" +
+                    " VALUES(" + name + ", " + link + ")";
             stmt.executeUpdate(sqlString);
         } catch (SQLException e) {
             e.printStackTrace();
