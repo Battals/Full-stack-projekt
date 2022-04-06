@@ -75,7 +75,6 @@ public class SQLManager {
             e.printStackTrace();
         }
     }
-
     public void deleteWish(String name, String username) { //Deletes a wish from current users wishlist
         try {
             sqlString = "DELETE FROM wishlist_" + username + " WHERE name = " + name + ")";
@@ -86,7 +85,7 @@ public class SQLManager {
     }
 
     //Admin Menu
-    private void runOnFirstStartUp() {
+    private void runOnFirstStartUp(){
     }
 
     public boolean createUser(String username, String password) { //Creates a new user
@@ -99,13 +98,20 @@ public class SQLManager {
                 System.out.println("new user");
             }
             stmt.executeUpdate("INSERT INTO users VALUES('" + username + "', '" + password + "')");
+            createWishlist(username);
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return false;
     }
-
+    public void createWishlist(String username){
+        try {
+            stmt.executeUpdate("CREATE TABLE wishlist_" + username + "(wish_name char(15), wish_link char(15))");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     public void deleteUser(String username) { //Deletes user and their wishlist
         try {
             stmt.executeUpdate("DROP TABLE wishlist_" + username);
