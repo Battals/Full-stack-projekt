@@ -61,8 +61,8 @@ public class Controller {
     }
 
     @GetMapping("/account")
-    public String loggedIn(HttpSession session){
-        if (!(Boolean) session.getAttribute("logged-in")){
+    public String loggedIn(HttpSession session) {
+        if (!(Boolean) session.getAttribute("logged-in")) {
             return "index-logged-in";
         } else {
             return "redirect:/";
@@ -124,23 +124,26 @@ public class Controller {
         return "redirect:/create";
     }
 
-    @PostMapping("/adding") //Add wish to the wishlist
+    @PostMapping("/adding") //Add wish to the wishlis
     public String adding(WebRequest dataFromForm, HttpSession session) {
-        SQLManager sqlManager = new SQLManager();
-        sqlManager.addWish(dataFromForm.getParameter("wish_name"),
-                dataFromForm.getParameter("wish_link"),
-                (String) session.getAttribute("username"));
-        return "redirect:/add-wish";
+        try {
+            SQLManager sqlManager = new SQLManager();
+            sqlManager.addWish(dataFromForm.getParameter("wish_name"),
+                    dataFromForm.getParameter("wish_link"),
+                    (String) session.getAttribute("username"));
+        }catch (Exception ignored) {
+        }
+            return "redirect:/add-wish";
+
+        }
+
+
+        @PostMapping("/removing") //Remove wish from the wishlist
+        public String removing (WebRequest dataFromForm, HttpSession session){
+            SQLManager sqlManager = new SQLManager();
+            sqlManager.deleteWish(dataFromForm.getParameter("wish-name"),
+                    (String) session.getAttribute("username"));
+            return "redirect:/remove-wish";
+        }
+
     }
-
-
-
-    @PostMapping("/removing") //Remove wish from the wishlist
-    public String removing(WebRequest dataFromForm, HttpSession session) {
-        SQLManager sqlManager = new SQLManager();
-        sqlManager.deleteWish(dataFromForm.getParameter("wish-name"),
-                (String) session.getAttribute("username"));
-        return "redirect:/remove-wish";
-    }
-
-}
