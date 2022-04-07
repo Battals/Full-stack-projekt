@@ -117,7 +117,7 @@ public class SQLManager {
     }
     public void createWishlist(String username){
         try {
-            stmt.executeUpdate("CREATE TABLE wishlist_" + username + "(wish_name char(15), wish_link char(15))");
+            stmt.executeUpdate("CREATE TABLE wishlist_" + username + "(wish_name varchar(45), wish_link varchar(2000))");
         } catch (SQLException e) {
             e.printStackTrace();
         }
