@@ -3,6 +3,7 @@ package com.example.fullstackprojekt.controllers;
 
 import com.example.fullstackprojekt.models.Wish;
 import com.example.fullstackprojekt.respositories.SQLManager;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -71,7 +72,7 @@ public class Controller {
     }
 
     @GetMapping("/account")
-    public String loggedIn(HttpSession session) {
+    public String loggedIn(HttpSession session, Model model) {
         if (!(Boolean) session.getAttribute("logged-in")) {
             return "index-logged-in";
         } else {
@@ -79,14 +80,14 @@ public class Controller {
         }
     }
 
-    @GetMapping("/view-wishlist")
-    public String viewWishlist(HttpSession session){
+    @GetMapping("/seeWishList")
+    public String viewWishlist(HttpSession session, Model model){
         SQLManager sql = new SQLManager();
         sql.start();
         try {
             //Laver arraylist med brugerens ønsker
             ArrayList<Wish> wishes = sql.getWishlist((String) session.getAttribute("username"));
-
+            System.out.println("lOADING WISHLIST SUCCESFULL");
             //Laver en String med brugerens ønsker fra arraylisten
             //wish.getName() = String med navnet
             //wish.getLink() = String med linket
@@ -95,10 +96,11 @@ public class Controller {
                 list += "\n" + wish.getName() + ":  " + wish.getLink();
             }
             System.out.println(list);
+            model.addAttribute("wishes", wishes);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "redirect:/account";
+        return "/account";
     }
 
     @GetMapping("/edit-wishlist") //Can remove wish, and redirect oneself to /add-wish
