@@ -65,6 +65,14 @@ public class SQLManager {
         }
         return wishes;
     }
+    public String getWishlistString(String username){
+        ArrayList<Wish> wishes = getWishlist(username);
+        String list = "List of " + username + " wishlist:";
+        for (Wish wish : wishes) {
+            list += "\n" + wish.getName() + ":  " + wish.getLink();
+        }
+        return list;
+    }
 
     public void addWish(String name, String link, String username) { //Adds a wish to current users wishlist
         try {
