@@ -12,13 +12,16 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
+import java.sql.Connection;
 import java.util.ArrayList;
 
 
 @org.springframework.stereotype.Controller
 
 public class Controller {
-    /*
+
+
+        /*
      Session Attributes:
      boolean - 'logged-in'(true/false)
      String - username(username)
@@ -26,7 +29,8 @@ public class Controller {
 
     @GetMapping("/")
     public String index(HttpSession session) {
-
+        SQLManager sqlManager = new SQLManager();
+        sqlManager.start();
         try {
             if (session.getAttribute("logged-in") != null) {
                 //nice ig
