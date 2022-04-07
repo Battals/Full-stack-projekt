@@ -41,36 +41,36 @@ public class Controller {
     @GetMapping("/login")
     public String battal(HttpSession session) {
         if (!(Boolean) session.getAttribute("logged-in")) {
-            return "redirect:/";
-        } else {
             return "indexBattal";
+        } else {
+            return "redirect:/";
         }
     }
 
     @GetMapping("/create") //able to create a user
     public String createUser(HttpSession session) {
         if (!(Boolean) session.getAttribute("logged-in")) {
-            return "redirect:/";
-        } else {
             return "createUser";
+        } else {
+            return "redirect:/";
         }
     }
 
     @GetMapping("/add-wish")//able to input a name and link, which will be added to wishlist as a wish
     public String addWish(HttpSession session) {
         if (!(Boolean) session.getAttribute("logged-in")) {
-            return "redirect:/";
-        } else {
             return "addWish";
+        } else {
+            return "redirect:/";
         }
     }
 
     @GetMapping("/account")
     public String loggedIn(HttpSession session) {
         if (!(Boolean) session.getAttribute("logged-in")) {
-            return "redirect:/";
-        } else {
             return "index-logged-in";
+        } else {
+            return "redirect:/";
         }
     }
 
@@ -147,7 +147,7 @@ public class Controller {
                 //logged in after creating user
                 System.out.println("user created");
                 session.setAttribute("username", dataFromForm.getParameter("username"));
-                return "redirect:/";
+                return "redirect:/login";
             } else {
                 return "redirect:/create";
             }
