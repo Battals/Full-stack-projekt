@@ -26,6 +26,7 @@ public class Controller {
 
     @GetMapping("/")
     public String index(HttpSession session) {
+
         try {
             if (session.getAttribute("logged-in") != null) {
                 //nice ig
