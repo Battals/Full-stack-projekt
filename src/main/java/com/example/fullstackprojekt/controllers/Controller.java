@@ -181,9 +181,11 @@ public class Controller {
 
     //GetMapping, send string til html
     @RequestMapping(value = "message", method = RequestMethod.GET)
-    public ModelAndView messages(String wishList) {
+    public ModelAndView messages(HttpSession session) {
+        SQLManager sql = new SQLManager();
+        sql.start();
         ModelAndView mav = new ModelAndView("message/list");
-        mav.addObject("messages", wishList);
+        mav.addObject("messages", sql.getWishlistString((String) session.getAttribute("username")));
         return mav;
     }
 }
