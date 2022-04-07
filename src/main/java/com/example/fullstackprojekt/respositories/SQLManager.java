@@ -148,7 +148,7 @@ public class SQLManager {
 
     //System Management
     private void establishConnection() { //Creates a connection to the sql database
-        String url ="jdbc:mysql://onskelisten.mysql.database.azure.com:3306/ønskelisten?useSSL=true&requireSSL=false";
+        String url ="jdbc:mysql://onskelisten.mysql.database.azure.com:3306/ønskelisten?verifyServerCertificate=true&useSSL=true&requireSSL=true";
         //Process
         try {
             //Define URL of the database
