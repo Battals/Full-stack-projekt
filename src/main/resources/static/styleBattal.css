@@ -148,7 +148,6 @@ body {
     font-family: var(--bodyFontFamily), var(--bodyFontFamilyFallback);
     font-size: var(--bodyFontSize);
     font-weight: var(--bodyFontWeight);
-    line-height: var(--bodyLineHeight);
     margin: 0;
     min-block-size: 85vh;
 }
