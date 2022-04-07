@@ -6,7 +6,10 @@ import com.example.fullstackprojekt.respositories.SQLManager;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -174,5 +177,13 @@ public class Controller {
         sqlManager.deleteWish(dataFromForm.getParameter("wish-name"),
                 (String) session.getAttribute("username"));
         return "redirect:/remove-wish";
+    }
+
+    //GetMapping, send string til html
+    @RequestMapping(value = "message", method = RequestMethod.GET)
+    public ModelAndView messages(String wishList) {
+        ModelAndView mav = new ModelAndView("message/list");
+        mav.addObject("messages", wishList);
+        return mav;
     }
 }
