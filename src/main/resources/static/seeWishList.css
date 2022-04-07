@@ -1,3 +1,28 @@
+@font-face {
+    font-family: "Sketch 3D";
+    src: url(/fonts/sketch-3d.ttf);
+}
+
 body{
     background-color: azure;
+}
+
+h1{
+    font-family: "Sketch 3D", sans-serif;
+    font-size: 3.5vw;
+    text-transform: uppercase;
+    color: #bb8aad;
+}
+.wishlist{
+    margin: auto;
+    width: 50%;
+    height: 50vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+th{
+    font-size: x-large;
+    padding: 1vw;
 }
