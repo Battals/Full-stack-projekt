@@ -47,6 +47,28 @@ public class SQLManager {
         }
         return false;
     }
+    public String loginTest(String username, String password) { //User can log in, and program registers credentials
+        try {
+            rs = stmt.executeQuery("SELECT * FROM users ORDER BY username");
+            while (rs.next()) {
+                if (rs.getString("username").equals(username)) {
+                    System.out.println("user found");
+                    if (rs.getString("password").equals(password)) {
+                        System.out.println("password matches");
+                        return "null";
+                    } else {
+                        System.out.println("invalid password");
+                        return "null";
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("error?");
+            return e.getMessage();
+        }
+        return "null";
+    }
 
     public void logout() { //logout function
     }
