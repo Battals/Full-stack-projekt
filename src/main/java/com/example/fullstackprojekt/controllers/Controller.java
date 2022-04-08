@@ -42,6 +42,13 @@ public class Controller {
         return "index";
     }
 
+    @GetMapping("logout")
+    public String logout(HttpSession session){
+        session.removeAttribute("username");
+        session.removeAttribute("logged-in");
+        return "redirect:/";
+    }
+
     @GetMapping("/login")
     public String battal(HttpSession session) {
         if (!(boolean) session.getAttribute("logged-in")) {
