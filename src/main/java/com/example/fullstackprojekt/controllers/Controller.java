@@ -35,6 +35,8 @@ public class Controller {
         try {
             if ((boolean) session.getAttribute("logged-in")) {
                 return "redirect:/account";
+            } else {
+                return "index";
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -51,38 +53,56 @@ public class Controller {
 
     @GetMapping("/login")
     public String battal(HttpSession session) {
-        if (!(boolean) session.getAttribute("logged-in")) {
-            return "indexBattal";
-        } else {
-            return "redirect:/";
+        try {
+            if ((boolean) session.getAttribute("logged-in")) {
+                return "redirect:/";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+       return "indexBattal";
     }
 
     @GetMapping("/create") //able to create a user
     public String createUser(HttpSession session) {
-        if (!(boolean) session.getAttribute("logged-in")) {
-            return "createUser";
-        } else {
-            return "redirect:/";
+        try {
+            if (!(boolean) session.getAttribute("logged-in")) {
+                return "createUser";
+            } else {
+                return "redirect:/";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        return "createUser";
     }
 
     @GetMapping("/add-wish")//able to input a name and link, which will be added to wishlist as a wish
     public String addWish(HttpSession session) {
-        if ((boolean) session.getAttribute("logged-in")) {
-            return "addWish";
-        } else {
-            return "redirect:/";
+        try {
+            if ((boolean) session.getAttribute("logged-in")) {
+                return "addWish";
+            } else {
+                return "redirect:/";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        return "redirect:/";
     }
 
     @GetMapping("/account")
     public String loggedIn(HttpSession session, Model model) {
-        if ((boolean) session.getAttribute("logged-in")) {
-            return "index-logged-in";
-        } else {
-            return "redirect:/";
+        try {
+            if ((boolean) session.getAttribute("logged-in")) {
+                return "index-logged-in";
+            } else {
+                return "redirect:/";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        return "redirect:/";
     }
 
     @GetMapping("/seeWishList")
@@ -90,6 +110,13 @@ public class Controller {
         SQLManager sql = new SQLManager();
         sql.start();
         try {
+            try{
+                if (!(Boolean) session.getAttribute("logged-in")) {
+                    return "redirect:/";
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             //Laver arraylist med brugerens ønsker
             ArrayList<Wish> wishes = sql.getWishlist((String) session.getAttribute("username"));
             System.out.println("lOADING WISHLIST SUCCESFULL");
@@ -110,11 +137,16 @@ public class Controller {
 
     @GetMapping("/edit-wishlist") //Can remove wish, and redirect oneself to /add-wish
     public String editWishlist(HttpSession session) {
-        if (!(Boolean) session.getAttribute("logged-in")) {
-            return "redirect:/";
-        } else {
-            return "editWishlist";
+        try {
+            if (!(Boolean) session.getAttribute("logged-in")) {
+                return "redirect:/";
+            } else {
+                return "editWishlist";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        return "redirect:/";
     }
 
     @GetMapping("/delete-wish")
