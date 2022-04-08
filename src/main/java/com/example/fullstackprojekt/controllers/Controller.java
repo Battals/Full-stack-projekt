@@ -168,7 +168,6 @@ public class Controller {
         SQLManager sql = new SQLManager();
         sql.start();
         try {
-            /*
             if (sql.login(dataFromForm.getParameter("username"), dataFromForm.getParameter("password"))) {
                 //successful login
                 session.setAttribute("username", dataFromForm.getParameter("username"));
@@ -178,10 +177,6 @@ public class Controller {
                 //invalid login
                 return "redirect:/login";
             }
-
-             */
-            String test = sql.loginTest(dataFromForm.getParameter("username"), dataFromForm.getParameter("password"));
-            return "redirect:/" + test;
         } catch (Exception e) {
             e.printStackTrace();
         }
