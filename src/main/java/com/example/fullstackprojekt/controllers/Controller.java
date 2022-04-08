@@ -39,7 +39,7 @@ public class Controller {
                 return "index";
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            //new session
         }
         return "index";
     }
