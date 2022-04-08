@@ -145,6 +145,17 @@ public class SQLManager {
         }
         return userExists;
     }
+    public void resetDatabase(){
+       ArrayList<String> users = new ArrayList<>();
+       try {
+           stmt.executeQuery("SELECT FROM users");
+           while (rs.next()) {
+               users.add(rs.getString("name"));
+           }
+       } catch (SQLException e) {
+           e.printStackTrace();
+       }
+    }
 
     //System Management
     private void establishConnection() { //Creates a connection to the sql database
