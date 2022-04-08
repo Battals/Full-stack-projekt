@@ -134,9 +134,9 @@ public class SQLManager {
     public boolean userExists(String username) { //returns a boolean whether username is used or not
         boolean userExists = false;
         try {
-            stmt.executeQuery("SELECT * FROM users");
+            stmt.executeQuery("SELECT * FROM users ORDER BY username");
             while (rs.next()) {
-                if (rs.getString("name").equalsIgnoreCase(username)) {
+                if (rs.getString("username").equalsIgnoreCase(username)) {
                     userExists = true;
                 }
             }
@@ -145,14 +145,28 @@ public class SQLManager {
         }
         return userExists;
     }
-    public void resetDatabase(){
+    public void resetDatabase(){ //Deletes all data and resets database
        ArrayList<String> users = new ArrayList<>();
        try {
-           stmt.executeQuery("SELECT FROM users");
+           rs = stmt.executeQuery("SELECT * FROM users ORDER BY username");
            while (rs.next()) {
-               users.add(rs.getString("name"));
+               users.add(rs.getString("username"));
+               System.out.println("found user - " + rs.getString("username"));
+           }
+           for (int i = 0; i < users.size(); i++) {
+               try {
+                   System.out.println("DROP TABLE wishlist_" + users.get(i));
+                   stmt.executeUpdate("DROP TABLE wishlist_" + users.get(i));
+               } catch (SQLException e) {
+                   System.out.println(users.get(i) + " has no database");
+               }
+               System.out.println(users.get(i) + " wishlist deleted");
+               System.out.println("DELETE FROM users WHERE username = '" + users.get(i) + "'");
+               stmt.executeUpdate("DELETE FROM users WHERE username = '" + users.get(i) + "'");
+               System.out.println(users.get(i) + "deleted");
            }
        } catch (SQLException e) {
+           System.out.println("rpi");
            e.printStackTrace();
        }
     }
