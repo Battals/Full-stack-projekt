@@ -33,10 +33,8 @@ public class Controller {
         SQLManager sqlManager = new SQLManager();
         sqlManager.start();
         try {
-            if (session.getAttribute("logged-in") != null) {
-                //nice ig
-            } else {
-                session.setAttribute("logged-in", false);
+            if ((boolean) session.getAttribute("logged-in")) {
+                return "redirect:/account";
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -46,7 +44,7 @@ public class Controller {
 
     @GetMapping("/login")
     public String battal(HttpSession session) {
-        if (!(Boolean) session.getAttribute("logged-in")) {
+        if (!(boolean) session.getAttribute("logged-in")) {
             return "indexBattal";
         } else {
             return "redirect:/";
@@ -55,7 +53,7 @@ public class Controller {
 
     @GetMapping("/create") //able to create a user
     public String createUser(HttpSession session) {
-        if (!(Boolean) session.getAttribute("logged-in")) {
+        if (!(boolean) session.getAttribute("logged-in")) {
             return "createUser";
         } else {
             return "redirect:/";
@@ -64,7 +62,7 @@ public class Controller {
 
     @GetMapping("/add-wish")//able to input a name and link, which will be added to wishlist as a wish
     public String addWish(HttpSession session) {
-        if (!(Boolean) session.getAttribute("logged-in")) {
+        if ((boolean) session.getAttribute("logged-in")) {
             return "addWish";
         } else {
             return "redirect:/";
@@ -73,7 +71,7 @@ public class Controller {
 
     @GetMapping("/account")
     public String loggedIn(HttpSession session, Model model) {
-        if (!(Boolean) session.getAttribute("logged-in")) {
+        if ((boolean) session.getAttribute("logged-in")) {
             return "index-logged-in";
         } else {
             return "redirect:/";
@@ -134,6 +132,7 @@ public class Controller {
             if (sql.login(dataFromForm.getParameter("username"), dataFromForm.getParameter("password"))) {
                 //successful login
                 session.setAttribute("username", dataFromForm.getParameter("username"));
+                session.setAttribute("logged-in", true);
                 return "redirect:/account";
             } else {
                 //invalid login
